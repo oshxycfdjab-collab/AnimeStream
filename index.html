@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#020617" />
+    <title>AnimeStream - Watch Anime Online</title>
+    
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Only for loader styling before React mounts) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#8B5CF6', // Violet-500 matching app
+              accent: '#06B6D4',  // Cyan-500 matching app
+              dark: '#020617',    // Slate-950 matching app
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    
+    <style>
+      body {
+        background-color: #020617;
+        color: #f8fafc;
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      /* Loader Overlay */
+      #root:not(:empty) + .loader-overlay {
+        display: none;
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loader-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background-color: #020617;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+      }
+
+      /* Logo container matching Header design */
+      .brand-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 40px;
+        animation: fade-in-up 0.8s ease-out;
+      }
+
+      .logo-box {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+      }
+
+      .brand-text {
+        font-family: 'Outfit', sans-serif;
+        font-size: 40px;
+        font-weight: 900;
+        color: white;
+        letter-spacing: -0.025em;
+        line-height: 1;
+      }
+      
+      .brand-text span {
+        color: #8B5CF6;
+      }
+
+      /* Loading Spinner */
+      .loading-dots {
+        display: flex;
+        gap: 8px;
+      }
+      
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #8B5CF6;
+        border-radius: 50%;
+        animation: bounce 0.6s infinite alternate;
+      }
+      
+      .dot:nth-child(2) { animation-delay: 0.2s; background-color: #06B6D4; }
+      .dot:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes bounce {
+        to { transform: translateY(-10px); opacity: 0.5; }
+      }
+
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.572.0",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Loader Overlay -->
+    <div class="loader-overlay">
+        <div class="brand-container">
+            <div class="logo-box">
+                <!-- PlayCircle Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            </div>
+            <div class="brand-text">
+                Anime<span>Stream</span>
+            </div>
+        </div>
+        
+        <div class="loading-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+    </div>
+
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
